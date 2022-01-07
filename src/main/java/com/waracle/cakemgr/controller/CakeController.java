@@ -17,7 +17,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class CakeController {
 
@@ -50,7 +50,7 @@ public class CakeController {
     return ResponseEntity.ok(apiResponse);
   }
 
-  @GetMapping({"/", "/cakes"})
+  @GetMapping({"", "/cakes"})
   public ResponseEntity<ApiResponse<List<Cake>>> getAllCakes(Pageable pageable) {
     Page<Cake> cakes = cakeService.getAllCakes(pageable);
 

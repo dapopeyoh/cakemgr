@@ -46,7 +46,7 @@ public class CakeControllerTest {
   public void givenNoCakeInDbShouldReturnEmptyList() throws Exception {
     given(cakeService.getAllCakes(any())).willReturn(Page.empty());
 
-    mockMvc.perform(get("/"))
+    mockMvc.perform(get("/api/v1"))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.data", Matchers.is(Collections.emptyList())));
   }
@@ -55,7 +55,7 @@ public class CakeControllerTest {
   public void givenPaginationShouldEvaluateParameters() throws Exception {
     given(cakeService.getAllCakes(any())).willReturn(Page.empty());
 
-    mockMvc.perform(get("/")
+    mockMvc.perform(get("/api/v1")
             .param("size", "2"))
             .andExpect(status().isOk());
 
@@ -70,7 +70,7 @@ public class CakeControllerTest {
   public void givenMissingParamShouldThrowException() throws Exception {
     CakeRequest cakeRequest = new CakeRequest("Sponge Cake", "", "");
 
-    mockMvc.perform(post("/cakes")
+    mockMvc.perform(post("/api/v1/cakes")
             .content(objectMapper.writeValueAsString(cakeRequest))
             .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isBadRequest())
@@ -87,7 +87,7 @@ public class CakeControllerTest {
 
     given(cakeService.addCake(cakeRequest)).willReturn(cake);
 
-    mockMvc.perform(post("/cakes")
+    mockMvc.perform(post("/api/v1/cakes")
             .content(objectMapper.writeValueAsString(cakeRequest))
             .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isCreated())
@@ -98,7 +98,7 @@ public class CakeControllerTest {
   public void givenCakeIdThatExistsShouldReturnCake() throws Exception {
     given(cakeService.getCake(5L)).willReturn(any());
 
-    mockMvc.perform(get("/cakes/5")).andExpect(status().isOk());
+    mockMvc.perform(get("/api/v1/cakes/5")).andExpect(status().isOk());
   }
 
 }
