@@ -68,8 +68,7 @@ public class CakeControllerTest {
 
   @Test
   public void givenMissingParamShouldThrowException() throws Exception {
-    CakeRequest cakeRequest = new CakeRequest("Sponge Cake", "Test Cake", "http://image");
-    cakeRequest.setTitle("Sponge Cake");
+    CakeRequest cakeRequest = new CakeRequest("Sponge Cake", "", "");
 
     mockMvc.perform(post("/cakes")
             .content(objectMapper.writeValueAsString(cakeRequest))
