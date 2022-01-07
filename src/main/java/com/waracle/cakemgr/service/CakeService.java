@@ -47,8 +47,8 @@ public class CakeService {
         CakeRequest cakeRequest = new CakeRequest(cakeResponse.getTitle(), cakeResponse.getDesc(), cakeResponse.getImage());
         try {
           addCake(cakeRequest);
-        } catch (RuntimeException ex) {
-          log.info("duplicate... " + cakeRequest.getTitle());
+        } catch (InvalidCakeException ex) {
+          log.info("duplicate title: " + cakeRequest.getTitle());
         }
       });
     });
