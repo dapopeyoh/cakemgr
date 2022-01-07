@@ -1,0 +1,17 @@
+version: '3.7'
+
+# Define services
+services:
+  # cakemgrApp service
+  cakemgr:
+    # Configuration for building the docker image for the cakemgr
+    build:
+      context: ./ # Use an image built from the specified dockerfile in the root directory.
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080" # Forward the exposed port 8080 on the container to port 8080 on the host machine
+    restart: always
+    environment: # Pass environment variables to the service
+      SPRING_DATASOURCE_URL: jdbc:hsqldb:mem:cakedb;DB_CLOSE_DELAY=-1
+      SPRING_DATASOURCE_USERNAME: sa
+      SPRING_DATASOURCE_PASSWORD:
