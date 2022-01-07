@@ -1,0 +1,9 @@
+- Migrated app to Spring-Boot 2.6.2
+- Updated package structure
+- Added unit tests
+- Added validation on cake title to prevent adding duplicates
+- Added validations while creating and fetching cakes
+- Fetch and persist initial cakeList from external service on application startup
+- Added api versioning
+- Added custom exception and global exception handling
+- Added pagination for fetching cake list
